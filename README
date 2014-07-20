@@ -2,3 +2,17 @@ README
 	AT 2014-07-20 By Peter
 
 This is my tools project
+
+1	github create new repository
+	1)	Create a new repository on the command line
+		touch README.md
+		git init
+		git add README.md
+		git commit -m "first commit"
+		git remote add origin git@github.com:zhongguomin/tools.git
+		git push -u origin master
+
+	2)	Push an existing repository from the command line
+		git remote add origin git@github.com:zhongguomin/tools.git
+		git push -u origin master
+
