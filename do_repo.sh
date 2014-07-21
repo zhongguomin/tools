@@ -29,7 +29,8 @@ function find_git_dir()
 	local num=0
 	unset git_dir_array
 
-	for f in `ls -l | grep ^d | awk '{print $8}'`
+	# for f in `ls -l | grep ^d | awk '{print $9}'`
+	for f in `ls -d */`
 	do
 		if [ -d $f/.git ]; then
 			git_dir_array[$num]=$f
@@ -55,6 +56,7 @@ function process_args()
 {
 	if [ $# != 1 ]; then
 		echo "Input Error ..!!"
+		echo "	Use Like: ./do_repo.sh status OR ./do_repo.sh pull"
 		return
 	fi
 
@@ -64,7 +66,8 @@ function process_args()
 		"pull")
 			do_git_cmd $1;;
 		*)
-			echo "Unkown Input ..!!";;
+			echo "Unkown Input ..!!"
+			echo "	Use Like: ./do_repo.sh status OR ./do_repo.sh pull";;
 	esac
 }
 
