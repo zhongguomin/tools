@@ -52,26 +52,53 @@ function do_git_cmd()
 	done
 }
 
+function get_dir_size()
+{
+	du -sh *
+}
+
+function do_backup()
+{
+	# date_time=`date '+%Y-%m-%d-%H-%M-%S'`
+	date_time=`date '+%Y-%m-%d'`
+
+	for git_dir in ${git_dir_array[@]}
+	do
+		backup_name="${git_dir:0:(${#git_dir}-1)}.${date_time}.tar.gz"
+		echo "tar -czf ${backup_name} ${git_dir} ..."
+		tar -czf ${backup_name} ${git_dir}
+	done
+}
+
+function print_help()
+{
+	echo "Input Error ..!!"
+	echo "
+	  Use Like: ./do_repo.sh parm
+	  parm [status, pull, size, backup]"
+}
+
 function process_args()
 {
 	if [ $# != 1 ]; then
-		echo "Input Error ..!!"
-		echo "	Use Like: ./do_repo.sh status OR ./do_repo.sh pull"
+		print_help
 		return
 	fi
 
 	case $1 in
-		"status")
+		"status" | "pull")
+			find_git_dir
 			do_git_cmd $1;;
-		"pull")
-			do_git_cmd $1;;
+		"size")
+			get_dir_size;;
+		"backup")
+			find_git_dir
+			do_backup;;
 		*)
-			echo "Unkown Input ..!!"
-			echo "	Use Like: ./do_repo.sh status OR ./do_repo.sh pull";;
+			print_help;;
 	esac
 }
 
-find_git_dir
 process_args $@
 
 
