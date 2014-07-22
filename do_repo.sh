@@ -45,7 +45,7 @@ function do_git_cmd()
 	do
 		cur_dir=`pwd`
 		cd ${git_dir}
-		echo -e "\033[47;30m${cur_dir}/${git_dir}  \033[0m"
+		echo -e "\033[40;33m${cur_dir}/${git_dir}\033[0m"
 		git $1
 		echo ""
 		cd ${cur_dir}
