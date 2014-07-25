@@ -22,6 +22,9 @@ EOF
 
 
 declare -a git_dir_array
+declare -a support_param_array
+
+support_param_array=("status" "pull" "size" "backup")
 
 
 function find_git_dir()
@@ -73,9 +76,13 @@ function do_backup()
 function print_help()
 {
 	echo "Input Error ..!!"
-	echo "
-	  Use Like: ./do_repo.sh parm
-	  parm [status, pull, size, backup]"
+	echo "Use Like: ./do_repo.sh parameter "
+	echo "  parameter: "
+
+	for param in ${support_param_array[@]}
+	do
+		echo "    ${param}"
+	done
 }
 
 function process_args()
@@ -98,6 +105,8 @@ function process_args()
 			print_help;;
 	esac
 }
+
+complete -W "${support_param_array[*]}" do_repo.sh
 
 process_args $@
 
