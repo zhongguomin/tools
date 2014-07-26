@@ -44,6 +44,10 @@ function find_git_dir()
 
 function do_git_cmd()
 {
+	echo "=================================================="
+	echo "You Have ${#git_dir_array[@]} Projects"
+	echo "=================================================="
+
 	for git_dir in ${git_dir_array[@]}
 	do
 		cur_dir=`pwd`
