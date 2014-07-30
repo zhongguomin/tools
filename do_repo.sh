@@ -110,6 +110,11 @@ function process_args()
 	esac
 }
 
+function has_new_version()
+{
+	# diff do_repo.sh tools/do_repo.sh 
+}
+
 complete -W "${support_param_array[*]}" do_repo.sh
 
 process_args $@
