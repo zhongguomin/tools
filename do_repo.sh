@@ -113,6 +113,7 @@ function process_args()
 function has_new_version()
 {
 	# diff do_repo.sh tools/do_repo.sh 
+	echo ""
 }
 
 complete -W "${support_param_array[*]}" do_repo.sh
